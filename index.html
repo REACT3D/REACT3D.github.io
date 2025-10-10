@@ -409,28 +409,28 @@
         <div class="columns is-mobile is-multiline is-centered tight-columns" style="align-items: flex-end;">
           <div class="column is-one-third">
             <!-- <p class="has-text-centered mb-5" style="font-size: 16px;"><strong>Predicted 2D Mask</strong></p> -->
-            <img src="./static/images/input_result_comparison/c0f5742640_scannetpp.jpg" alt="Input 1" >
+            <img src="./static/images/input_result_comparison/c0f5742640_scannetpp.jpg" alt="Input 1" style="width: 100%; height: auto; object-fit: contain;">
           </div>
           <div class="column is-one-third">
             <!-- <p class="has-text-centered" style="font-size: 16px;"><strong>Segmented Mesh</strong></p> -->
-            <img src="./static/images/input_result_comparison/3c95c89d61_scannetpp_2.jpg" alt="Input 2" >
+            <img src="./static/images/input_result_comparison/3c95c89d61_scannetpp_2.jpg" alt="Input 2" style="width: 100%; height: auto; object-fit: contain;">
           </div>
           <div class="column is-one-third">
             <!-- <p class="has-text-centered" style="font-size: 16px;"><strong>Predicted Joint</strong></p> -->
-            <img src="./static/images/input_result_comparison/7f4d173c9c_scannetpp.jpg" alt="Input 3" >
+            <img src="./static/images/input_result_comparison/7f4d173c9c_scannetpp.jpg" alt="Input 3" style="width: 100%; height: auto; object-fit: contain;">
           </div>
           <!-- <br /> -->
           <div class="column is-one-third">
             <!-- <p class="has-text-centered" style="font-size: 16px;"><strong>Refined Joint</strong></p> -->
-            <img src="./static/images/input_result_comparison/c0f5742640_ours_isaac.jpg" alt="Output 1">
+            <img src="./static/images/input_result_comparison/c0f5742640_ours_isaac.jpg" alt="Output 1" style="width: 100%; height: auto; object-fit: contain;">
           </div>
           <div class="column is-one-third">
             <!-- <p class="has-text-centered" style="font-size: 16px;"><strong>Interactive Object</strong></p> -->
-            <img src="./static/images/input_result_comparison/3c_ours_isaac.jpg" alt="Output 2" >
+            <img src="./static/images/input_result_comparison/3c_ours_isaac.jpg" alt="Output 2" style="width: 100%; height: auto; object-fit: contain;">
           </div>
           <div class="column is-one-third">
             <!-- <p class="has-text-centered" style="font-size: 16px;"><strong>Opened Object</strong></p> -->
-            <img src="./static/images/input_result_comparison/7f4d173c9c_ours_isaac.jpg" alt="Output 3" >
+            <img src="./static/images/input_result_comparison/7f4d173c9c_ours_isaac.jpg" alt="Output 3" style="width: 100%; height: auto; object-fit: contain;">
           </div>
         </div>
         <div class="content has-text-justified">
@@ -455,16 +455,32 @@
           </p>
         </div>
         <br />
-        <h3 class="title is-4 ">Isaac Sim</h3>
-        <video id="isaac_v1" controls loop style="width:960px !important; height:505px !important; object-fit: fill !important;">
-          <source src="static/videos/3c_isaacsim.mp4" type="video/mp4">
-        </video>
-        <video id="isaac_v2" controls loop hidden style="width:960px !important; height:505px !important; object-fit: fill !important;">
-          <source src="static/videos/7f_isaacsim.mp4" type="video/mp4">
-        </video>
-        <video id="isaac_v3" controls loop hidden style="width:960px !important; height:505px !important; object-fit: fill !important;">
-          <source src="static/videos/c0f_isaacsim.mp4" type="video/mp4">
-        </video>
+        <style>
+          .video-container {
+            width: 100%;
+            max-width: 960px;   /* 桌面端最大宽度 */
+            margin: 0 auto;     /* 居中 */
+          }
+          .video-container video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 960 / 505; /* 保持一致的宽高比 */
+            object-fit: cover;       /* 填充保持比例 */
+          }
+        </style>
+
+        <h3 class="title is-4">Isaac Sim</h3>
+        <div class="video-container">
+          <video id="isaac_v1" controls loop>
+            <source src="static/videos/3c_isaacsim.mp4" type="video/mp4">
+          </video>
+          <video id="isaac_v2" controls loop hidden>
+            <source src="static/videos/7f_isaacsim.mp4" type="video/mp4">
+          </video>
+          <video id="isaac_v3" controls loop hidden>
+            <source src="static/videos/c0f_isaacsim.mp4" type="video/mp4">
+          </video>
+        </div>
 
         <div class="buttons is-centered mt-3">
           <button class="button is-dark is-squared video-changer" onclick="show('isaac_v1','isaac')">
@@ -480,15 +496,17 @@
 
         <br />
         <h3 class="title is-4 ">ROS</h3>
-        <video id="ros_v1" controls loop style="width:960px !important; height:505px !important; object-fit: fill !important;">
-          <source src="static/videos/ROS_GUI_demo_3c95c89d61.webm" type="video/webm">
-        </video>
-        <video id="ros_v2" controls loop hidden style="width:960px !important; height:505px !important; object-fit: fill !important;">
-          <source src="static/videos/ROS_GUI_demo_7f4d173c9c.webm" type="video/webm">
-        </video>
-        <video id="ros_v3" controls loop hidden style="width:960px !important; height:505px !important; object-fit: fill !important;">
-          <source src="static/videos/ROS_GUI_demo_40aec5fffa.webm" type="video/webm">
-        </video>
+        <div class="video-container">
+          <video id="ros_v1" controls loop>
+            <source src="static/videos/ROS_GUI_demo_3c95c89d61.webm" type="video/webm">
+          </video>
+          <video id="ros_v2" controls loop hidden>
+            <source src="static/videos/ROS_GUI_demo_7f4d173c9c.webm" type="video/webm">
+          </video>
+          <video id="ros_v3" controls loop hidden>
+            <source src="static/videos/ROS_GUI_demo_40aec5fffa.webm" type="video/webm">
+          </video>
+        </div>
 
         <div class="buttons is-centered mt-3">
           <button class="button is-dark is-squared video-changer" onclick="show('ros_v1','ros')">
