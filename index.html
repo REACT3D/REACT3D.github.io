@@ -556,6 +556,374 @@
   </div>
 </section> -->
 
+<section class="section" id="Quantitative-Results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Quantitative Results</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Quantitative results on openable object detection on ScanNet++.</b> Openable object detection on 30 ScanNet++ scenes rich in openable objects. We report Precision, Recall, and F1 at IoU thresholds &tau;&isin;{0.25, 0.50}. <sup>*</sup>For URDFormer, &tau; denotes the coverage ratio, while for other methods it denotes IoU. <sup>&dagger;</sup>For URDFormer, the number reflects only openable objects visible in the selected region with the highest density of openable objects, since the method takes a single RGB image as input. <sup>&Dagger;</sup>denotes the use of ground-truth mesh as input and the Gemini 2.5 model for detection. <span class="best">Best</span>, <span class="second">second-best</span>, and <span class="third">third-best</span> results are highlighted.
+          </p>
+        </div>
+
+        <div class="table-container mb-6">
+          <table class="academic-table table is-fullwidth">
+            <thead>
+              <tr>
+                <th rowspan="2" style="vertical-align: middle; text-align: left;">Method</th>
+                <th rowspan="2" style="vertical-align: middle;">#Openable<br>Objects</th>
+                <th colspan="3" style="border-bottom: 1px solid black;">&tau;<sup>*</sup>=0.25</th>
+                <th colspan="3" style="border-bottom: 1px solid black;">&tau;<sup>*</sup>=0.50</th>
+              </tr>
+              <tr>
+                <th>Precision&uarr;</th>
+                <th>Recall&uarr;</th>
+                <th>F1 Score&uarr;</th>
+                <th>Precision&uarr;</th>
+                <th>Recall&uarr;</th>
+                <th>F1 Score&uarr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="midrule">
+                <td style="text-align: left;">URDFormer</td>
+                <td>226<sup>&dagger;</sup></td>
+                <td class="third">0.429</td>
+                <td class="second">0.226</td>
+                <td class="second">0.296</td>
+                <td class="second">0.361</td>
+                <td class="second">0.190</td>
+                <td class="second">0.249</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DRAWER (GT-mesh 2.5<sup>&Dagger;</sup>)</td>
+                <td>540</td>
+                <td class="second">0.434</td>
+                <td class="third">0.141</td>
+                <td class="third">0.213</td>
+                <td class="third">0.326</td>
+                <td class="third">0.106</td>
+                <td class="third">0.159</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">REACT3D (Ours)</td>
+                <td>540</td>
+                <td class="best">0.731</td>
+                <td class="best">0.393</td>
+                <td class="best">0.511</td>
+                <td class="best">0.666</td>
+                <td class="best">0.357</td>
+                <td class="best">0.465</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Quantitative results of articulation estimation and MOD evaluation on ScanNet++.</b> Articulation evaluation on the same 30 scenes from ScanNet++. Joint type accuracy is computed over correctly detected movable parts (+M / P<sub>Det</sub>), while minimum distance (MD) and orientation error (OE) are reported only for parts with correctly predicted joint types. Results are broken down by joint types: Prismatic, Revolute Vertical (Vert.), and Revolute Horizontal (Hor.). <sup>*</sup><sup>&dagger;</sup><sup>&Dagger;</sup>Conditions are the same as in our initial evaluation. <span class="best">Best</span>, <span class="second">second-best</span>, and <span class="third">third-best</span> results are highlighted.
+          </p>
+        </div>
+        
+        <style>
+          .table-container {
+            overflow-x: auto;
+          }
+          .academic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-size: 0.9em;
+          }
+          .academic-table th, .academic-table td {
+            padding: 8px 4px;
+            text-align: center;
+            border: none;
+            vertical-align: middle;
+            white-space: nowrap;
+          }
+          .academic-table th {
+            font-weight: bold;
+          }
+          .academic-table thead tr:first-child th {
+            border-top: 2px solid black;
+          }
+          .academic-table thead tr:last-child th {
+            border-bottom: 1px solid black;
+          }
+          .academic-table tbody tr:last-child td {
+            border-bottom: 2px solid black;
+          }
+          .academic-table tbody tr.midrule td {
+            border-top: 1px solid black;
+          }
+          .best { font-weight: bold; }
+          .second { text-decoration: underline; }
+          .third { font-style: italic; }
+        </style>
+
+        <div class="table-container">
+          <table class="academic-table table is-fullwidth">
+            <thead>
+              <tr>
+                <th rowspan="3" style="vertical-align: middle; text-align: left;">Method</th>
+                <th rowspan="3" style="vertical-align: middle;">#Openable<br>Objects</th>
+                <th colspan="7" style="border-bottom: 1px solid black;">&tau;<sup>*</sup>=0.25</th>
+                <th colspan="7" style="border-bottom: 1px solid black;">&tau;<sup>*</sup>=0.50</th>
+              </tr>
+              <tr>
+                <th colspan="3" style="border-bottom: 1px solid black;">Articulation</th>
+                <th colspan="4" style="border-bottom: 1px solid black;">MOD [%]&uarr;</th>
+                <th colspan="3" style="border-bottom: 1px solid black;">Articulation</th>
+                <th colspan="4" style="border-bottom: 1px solid black;">MOD [%]&uarr;</th>
+              </tr>
+              <tr>
+                <th>Joint Acc. [%]&uarr;</th>
+                <th>MD [m]&darr;</th>
+                <th>OE [&deg;]&darr;</th>
+                <th>PDet</th>
+                <th>+M</th>
+                <th>+MO</th>
+                <th>+MOD</th>
+                <th>Joint Acc. [%]&uarr;</th>
+                <th>MD [m]&darr;</th>
+                <th>OE [&deg;]&darr;</th>
+                <th>PDet</th>
+                <th>+M</th>
+                <th>+MO</th>
+                <th>+MOD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- URDFormer -->
+              <tr class="midrule">
+                <td style="text-align: left;"><b>URDFormer</b></td>
+                <td>226<sup>&dagger;</sup></td>
+                <td class="third">51.0</td>
+                <td class="third">0.583</td>
+                <td class="best">0.50</td>
+                <td class="second">22.6</td>
+                <td class="second">11.5</td>
+                <td class="second">11.5</td>
+                <td class="third">2.2</td>
+                <td class="third">46.5</td>
+                <td class="third">0.491</td>
+                <td class="best">0.61</td>
+                <td class="second">19.0</td>
+                <td class="second">8.8</td>
+                <td class="second">8.8</td>
+                <td class="third">3.1</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Prismatic</i></td>
+                <td>63</td>
+                <td>--</td>
+                <td>--</td>
+                <td>2.05</td>
+                <td>9.5</td>
+                <td>1.6</td>
+                <td>1.6</td>
+                <td>1.6</td>
+                <td>--</td>
+                <td>--</td>
+                <td>1.95</td>
+                <td>12.7</td>
+                <td>1.6</td>
+                <td>1.6</td>
+                <td>1.6</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Revolute (Vert.)</i></td>
+                <td>159</td>
+                <td>--</td>
+                <td>0.548</td>
+                <td>0.34</td>
+                <td>25.8</td>
+                <td>14.5</td>
+                <td>14.5</td>
+                <td>3.1</td>
+                <td>--</td>
+                <td>0.493</td>
+                <td>0.40</td>
+                <td>20.1</td>
+                <td>11.3</td>
+                <td>11.3</td>
+                <td>4.4</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Revolute (Hor.)</i></td>
+                <td>4</td>
+                <td>--</td>
+                <td>0.452</td>
+                <td>3.06</td>
+                <td>50.0</td>
+                <td>25.0</td>
+                <td>25.0</td>
+                <td>0.0</td>
+                <td>--</td>
+                <td>0.452</td>
+                <td>3.06</td>
+                <td>50.0</td>
+                <td>25.0</td>
+                <td>25.0</td>
+                <td>0.0</td>
+              </tr>
+              <!-- DRAWER -->
+              <tr class="midrule">
+                <td style="text-align: left;"><b>DRAWER</b> (GT-mesh 2.5<sup>&Dagger;</sup>)</td>
+                <td>540</td>
+                <td class="second">73.7</td>
+                <td class="second">0.288</td>
+                <td class="third">1.62</td>
+                <td class="third">14.1</td>
+                <td class="third">10.4</td>
+                <td class="third">10.0</td>
+                <td class="second">5.2</td>
+                <td class="second">78.9</td>
+                <td>0.313</td>
+                <td class="third">1.71</td>
+                <td class="third">10.6</td>
+                <td class="third">8.3</td>
+                <td class="third">8.0</td>
+                <td class="second">3.7</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Prismatic</i></td>
+                <td>136</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>12.5</td>
+                <td>0.0</td>
+                <td>0.0</td>
+                <td>0.0</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>7.4</td>
+                <td>0.0</td>
+                <td>0.0</td>
+                <td>0.0</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Revolute (Vert.)</i></td>
+                <td>386</td>
+                <td>--</td>
+                <td>0.288</td>
+                <td>1.62</td>
+                <td>14.5</td>
+                <td>14.5</td>
+                <td>14.0</td>
+                <td>7.3</td>
+                <td>--</td>
+                <td>0.313</td>
+                <td>1.71</td>
+                <td>11.7</td>
+                <td>11.7</td>
+                <td>11.1</td>
+                <td>5.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Revolute (Hor.)</i></td>
+                <td>18</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>16.7</td>
+                <td>0.0</td>
+                <td>0.0</td>
+                <td>0.0</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>11.1</td>
+                <td>0.0</td>
+                <td>0.0</td>
+                <td>0.0</td>
+              </tr>
+              <!-- REACT3D -->
+              <tr class="midrule">
+                <td style="text-align: left;"><b>REACT3D (Ours)</b></td>
+                <td>540</td>
+                <td class="best">91.5</td>
+                <td class="best">0.203</td>
+                <td class="second">1.16</td>
+                <td class="best">39.3</td>
+                <td class="best">35.9</td>
+                <td class="best">35.9</td>
+                <td class="best">25.2</td>
+                <td class="best">92.2</td>
+                <td class="best">0.180</td>
+                <td class="second">1.13</td>
+                <td class="best">35.7</td>
+                <td class="best">33.0</td>
+                <td class="best">33.0</td>
+                <td class="best">23.9</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Prismatic</i></td>
+                <td>136</td>
+                <td>--</td>
+                <td>--</td>
+                <td>1.89</td>
+                <td>8.8</td>
+                <td>8.1</td>
+                <td>8.1</td>
+                <td>8.1</td>
+                <td>--</td>
+                <td>--</td>
+                <td>1.89</td>
+                <td>8.8</td>
+                <td>8.1</td>
+                <td>8.1</td>
+                <td>8.1</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Revolute (Vert.)</i></td>
+                <td>386</td>
+                <td>--</td>
+                <td>0.202</td>
+                <td>1.10</td>
+                <td>49.5</td>
+                <td>46.9</td>
+                <td>46.9</td>
+                <td>35.0</td>
+                <td>--</td>
+                <td>0.180</td>
+                <td>1.08</td>
+                <td>45.6</td>
+                <td>43.3</td>
+                <td>43.3</td>
+                <td>33.4</td>
+              </tr>
+              <tr>
+                <td style="text-align: left; padding-left: 2em;"><i>Revolute (Hor.)</i></td>
+                <td>18</td>
+                <td>--</td>
+                <td>0.316</td>
+                <td>2.39</td>
+                <td>50.0</td>
+                <td>11.1</td>
+                <td>11.1</td>
+                <td>5.6</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>27.8</td>
+                <td>0.0</td>
+                <td>0.0</td>
+                <td>0.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="Acknowledgements">
   <div class="container is-max-desktop content">
     <h2 class="title">Acknowledgements</h2>
